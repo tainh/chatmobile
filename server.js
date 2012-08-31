@@ -40,7 +40,10 @@ function signuped(data) {
 	console.log('signup user=' + who + ' hashed =' + typeof(data.hashed));
 	PersonModel.find({name:who}, function (err, docs) {
 		if (err)
+		{
+			console.log('Sign up Error: -->' + err);
 			reject(who, err);
+		}
 		else if (docs.length)
 			reject(who, 'signup: user ' + who + ' exists');
 		else if (!data.hashed || !data.salt)
